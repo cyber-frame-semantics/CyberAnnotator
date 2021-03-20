@@ -1,10 +1,10 @@
 import streamlit as st
 import os
 import json
-import requests
-import nltk
-#nltk.download()  
-from nltk.corpus import wordnet 
+# import nltk
+# nltk.download("all")
+from nltk.corpus import wordnet as wd
+from nltk.corpus import framenet as fn
 
 filename = st.text_input('Enter a file path:')
 
@@ -15,33 +15,44 @@ try:
     value_list = list(example_read.values())
 
     sub_keys = []
+
     for i in value_list:
         if type(i) == list:
             if "{" in str(i[0]):
                 sub_keys = sub_keys + i
-    st.write(sub_keys)
+
     for m in sub_keys:
         temp = json.dumps(m)
         new_keys = json.loads(temp)
-        temp_list = list(new_keys.keys())
-        key_list = key_list + list(set(temp_list) - set(key_list))
-    options = st.multiselect('What keys do you want to search', key_list)
-    
-    
-    option_of_number = st.multiselect("for which object would you like to go to?",list(range(len(sub_keys))))
+
+        temp_key = list(new_keys.keys())
+        temp_value = list(new_keys.values())
+
+        key_list = key_list + temp_key
+        value_list = value_list + temp_value
+
+    st.write(key_list)
+
+
+    option_of_number = st.multiselect("For which key(s) would you like to go to?",list(range(len(key_list))))
     for i in option_of_number:
-        x = sub_keys[i]
-        for j in options:
-            try:
-                st.write(j,"=",x[j])
-            except KeyError:
-                st.write("That attribute",j,"for",i, "does not exist")
+        st.write("You selected key: ",i,".",key_list[i])
+        st.write(key_list[i],"=",value_list[i])
 
-        
-    st.write('You selected: ', options)
+        hyp_list = []
+        syn = wd.synsets(key_list[i])
+        for k in syn:
+            temp_syn = k.hypernyms()
+            for j in temp_syn:
+                for p in j.lemmas():
+                    hyp_list.append(p.name())
 
-   # My_sysn = wordnet.synsets("fight") 
-    #print("Print just the word:", My_sysn[0].lemmas()[0].name(),"\n")
+        st.write("Hypernyms of ",key_list[i]," are: ",hyp_list)
+
+        lu_choice_number = st.multiselect("For which hypernyms would you like to see its lexical unit?",list(range(len(hyp_list))))
+        for q in lu_choice_number:
+            st.write("You selected hypernyms: ",q,".",hyp_list[q])
+            st.write("LU: ",fn.lus(r'%s' %hyp_list[q]),"\r")
 
     example.close()
 except FileNotFoundError:
