@@ -49,10 +49,12 @@ try:
 
         st.write("Hypernyms of ",key_list[i]," are: ",hyp_list)
 
-        lu_choice_number = st.multiselect("For which hypernyms would you like to see its lexical unit?",list(range(len(hyp_list))))
+        lu_choice_number = st.multiselect("For which hypernyms would you like to see its lexical unit?",list(range(len(hyp_list))),key=i)
         for q in lu_choice_number:
             st.write("You selected hypernyms: ",q,".",hyp_list[q])
-            st.write("LU: ",fn.lus(r'%s' %hyp_list[q]),"\r")
+            st.write("LUs: ")
+            lu = fn.lus(r'%s' %hyp_list[q])
+            st.text(lu)
 
     example.close()
 except FileNotFoundError:
