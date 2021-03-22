@@ -53,8 +53,10 @@ try:
         for q in lu_choice_number:
             st.write("You selected hypernyms: ",q,".",hyp_list[q])
             st.write("LUs: ")
-            lu = fn.lus(r'%s' %hyp_list[q])
-            st.text(lu)
+            lu = str(fn.lus(r'%s' %hyp_list[q]))
+            lu = lu[1:-1]
+            lu_list = lu.split(", ")
+            st.write(lu_list)
 
     example.close()
 except FileNotFoundError:
