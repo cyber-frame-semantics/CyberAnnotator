@@ -1,10 +1,19 @@
 # CyberAnnotator
 
+## 03/19/2021
+
+## Watch Out! If it's your first time to run things about wordnet and framenet, please 
+## uncomment the code ">> import nltk >> nltk.download("all")" before you run it. It will 
+## take a few minutes to download all required pieces. Then just comment the two lines of 
+## codes and re-run the app
+
 ### Problem to fix
 - cannot find all keys in some JSON file
+- Framenet does now work and has bugs (ValueError: Circular reference detected)
+- The output shown by streamlit is kind messy
+- Need to handle case that some keys' synsets are empty
 
 ### Funtions missing
-- find hyperny of keys using wordNet(NTLK)
 - link hyperny to frameNet lexical unit
 - output meaningful text
 
