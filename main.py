@@ -59,10 +59,10 @@ try:
             lu = lu[1:-1]
             lu_list = lu.split(", ")
             st.write(lu_list)
-            if len(lu_list) == 1:
-                LU_choice_number = st.multiselect("For which LU would you like to see it's associated frame and frame elements?",list(range(len(lu_list))),key=i)
-            else:
-                LU_choice_number = st.multiselect("For which LU would you like to see it's associated frame and frame elements?",list(range(len(lu_list)-1)),key=i)
+            #if len(lu_list) == 1:
+            LU_choice_number = st.multiselect("For which LU would you like to see it's associated frame and frame elements?",list(range(len(lu_list))),key=i)
+            #else:
+            #    LU_choice_number = st.multiselect("For which LU would you like to see it's associated frame and frame elements?",list(range(len(lu_list)-1)),key=i)
             for LU in LU_choice_number:
                 selectedLU = lu_list[LU]
                 lu_name = selectedLU.split("=")[2][:-1]
