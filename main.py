@@ -1,3 +1,4 @@
+#streamlit run main.py
 import streamlit as st
 import os
 import json
@@ -5,6 +6,7 @@ import json
 # nltk.download("all")
 from nltk.corpus import wordnet as wd
 from nltk.corpus import framenet as fn
+from pprint import pprint
 
 filename = st.text_input('Enter a file path:')
 
@@ -57,6 +59,24 @@ try:
             lu = lu[1:-1]
             lu_list = lu.split(", ")
             st.write(lu_list)
+            if len(lu_list) == 1:
+                LU_choice_number = st.multiselect("For which LU would you like to see it's associated frame and frame elements?",list(range(len(lu_list))),key=i)
+            else:
+                LU_choice_number = st.multiselect("For which LU would you like to see it's associated frame and frame elements?",list(range(len(lu_list)-1)),key=i)
+            for LU in LU_choice_number:
+                selectedLU = lu_list[LU]
+                lu_name = selectedLU.split("=")[2][:-1]
+                st.write("You selected LU: ",LU,".",lu_name)
+                lu_ID = int(selectedLU.split()[1][3:])
+                associatedFrame = fn.lu(lu_ID).frame.name
+                lu_frame = fn.frame(associatedFrame)
+                st.write("Frame: ", associatedFrame)
+                st.write("Reference: ",lu_frame.URL)
+                FE_list = []
+                FE_list.extend(sorted([x for x in lu_frame.FE]))
+                st.write("Frame Elemenet(s): ")
+                st.write(FE_list)
+            
 
     example.close()
 except FileNotFoundError:
