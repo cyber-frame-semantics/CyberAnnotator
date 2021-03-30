@@ -34,7 +34,6 @@ try:
 
     st.write(key_list)
 
-
     option_of_number = st.multiselect("For which key(s) would you like to go to?",list(range(len(key_list))))
     for i in option_of_number:
         st.write("You selected key: ",i,".",key_list[i])
@@ -54,17 +53,25 @@ try:
         for q in lu_choice_number:
             st.write("You selected hypernyms: ",q,".",hyp_list[q])
             st.write("LUs: ")
-            lu = str(fn.lus(r'%s' %hyp_list[q]))
-            lu = lu[1:-1]
-            lu_list = lu.split(", ")
+            lu = fn.lus(r'%s' %hyp_list[q])
+            lu_list = [] #List for contructing the string
+            lu_nameID_dict = {} #Dictionary for mapping LU_ID w/ LU Name (TODO: Replace the list w/ this dictionary for efficiency)
+            for lexical_unit in lu:
+                lexical_unit_LU_Name = lexical_unit['name']
+                lexical_unit_LU_ID = lexical_unit['ID']
+                lu_nameID_dict[lexical_unit_LU_ID] = lexical_unit_LU_Name
+                input_str = "LU Name=" + str(lexical_unit_LU_Name) + " (LU ID=" + str(lexical_unit_LU_ID) + ")"
+                lu_list.append(input_str)
             st.write(lu_list)
-            LU_choice_number = st.multiselect("For which LU would you like to see it's associated frame and frame elements?",list(range(len(lu_list))),key=i)
-            #TODO: Fix issue of  LU list's containing ..., as this isn't a valid LU entry
+            LU_choice_number = st.multiselect("For which LU would you like to see it's associated frame and frame elements?",list(range(len(lu_nameID_dict.keys()))),key=i)
             for LU in LU_choice_number:
                 selectedLU = lu_list[LU]
-                lu_name = selectedLU.split("=")[2][:-1]
+                if selectedLU.split()[3][0:2] == "ID": #To account for more than one word LU
+                    lu_ID = int(selectedLU.split()[3][:-1].replace("ID=", ""))
+                else:
+                    lu_ID = int(selectedLU.split()[4][:-1].replace("ID=", ""))
+                lu_name = lu_nameID_dict[lu_ID]
                 st.write("You selected LU: ",LU,".",lu_name)
-                lu_ID = int(selectedLU.split()[1][3:])
                 associatedFrame = fn.lu(lu_ID).frame.name
                 lu_frame = fn.frame(associatedFrame)
                 st.write("Frame: ", associatedFrame)
