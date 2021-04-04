@@ -1,6 +1,6 @@
 # CyberAnnotator
 
-## 03/28/2021
+## 04/04/2021
 
 ## Watch Out! If it's your first time to run things about wordnet and framenet, please 
 ## uncomment the code ">> import nltk >> nltk.download("all")" before you run it. It will 
@@ -11,7 +11,7 @@
 - cannot find all keys in some JSON file
 - The output shown by streamlit is kind messy
 - Need to handle case that some keys' synsets are empty
-- Fix issue of  LU list's containing ..., as this isn't a valid LU entry ***check line 61 (from 2/28 version)
+- For shortcircuit option, what to do w/ keys that contain underscore (input as is, seperate?)
 
 ### Funtions missing
 - output meaningful text
