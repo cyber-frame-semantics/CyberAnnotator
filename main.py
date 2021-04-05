@@ -12,7 +12,8 @@ from pathlib import Path
 # Cache this result, although we probably don't need to
 @st.cache
 def open_file(filename):
-    doc = json.load(filename)
+    with open(filename) as f:
+        doc = json.load(f)
     return doc
 
 filename = st.sidebar.file_uploader('Select a file', type=['json'])
