@@ -6,14 +6,28 @@ import json
 from nltk.corpus import wordnet as wd
 from nltk.corpus import framenet as fn
 from pprint import pprint
+from pathlib import Path
 
-filename = st.text_input('Enter a file path:')
+
+# Cache this result, although we probably don't need to
+@st.cache
+def open_file(filename):
+    with open(filename, 'r') as f:
+        doc = json.load(f)
+        return doc
+
+filename = st.sidebar.file_uploader('Select a file', type=['json'])
+
+# If we haven't selected a file via the above file picker widget, default to this one
+if not filename:
+    filename = Path('./stix.json')
+
 
 try:
-    example = open(filename)
-    example_read = json.load(example)
-    key_list = list(example_read.keys())
-    value_list = list(example_read.values())
+    example = open_file(filename)
+
+    key_list = list(example.keys())
+    value_list = list(example.values())
 
     sub_keys = []
 
@@ -136,6 +150,5 @@ try:
                         st.write("Selected LU:", lu_name)
                         st.write("LU's Frame:", associatedFrame,"(", lu_frame.URL , ")")
                         
-    example.close()
 except FileNotFoundError:
     st.error('File not found.')
