@@ -87,7 +87,7 @@ try:
                     st.write(FE_list)
                     st.write("Annotator Summary:")
                     st.write("File Annotated:" , filename)
-                    st.write("Selected Key:", key_list[i])
+                    st.write("Selected Key:", key_list[q])
                     st.write("Selected LU:", lu_name)
                     st.write("LU's Frame:", associatedFrame,"(", lu_frame.URL , ")")
 
