@@ -1,21 +1,38 @@
 # CyberAnnotator
 
-## 04/04/2021
+Github Repo for CKIDS DataFest Spring 2021: Turning Cyber Data into Language Project. This web app annotates through JSON formatted cyber threat material via Wordnet, FrameNet and supported using Streamlit. 
 
-## Watch Out! If it's your first time to run things about wordnet and framenet, please 
-## uncomment the code ">> import nltk >> nltk.download("all")" before you run it. It will 
-## take a few minutes to download all required pieces. Then just comment the two lines of 
-## codes and re-run the app
+#### Students Participants: 
+Chuqi Liu, MS, 1st year
+</br>
+Carol Varkey, MS, 1st year
+</br>
+Ruoyu Li, MS, 1st year
+</br>
+Rengapriya Aravindan MS, 1st year
+</br>
 
-### Problem to fix
+#### Advisor: 
+Jeremy Abrahamson, Viterbi School of Engineering
+
+## Installation 
+For first time running WordNet and FrameNet, please uncomment the following lines:
+```python
+import nltk
+nltk.download("all")
+```
+This first run will take a few minutes to download all the required peices. For future runs comment out the above mentioned lines and re-run the app. 
+
+## Demo
+
+
+## TODO
+- output meaningful text
 - cannot find all keys in some JSON file
-- The output shown by streamlit is kind messy
+- The output shown by streamlit is kind messy (improve UI)
 - Need to handle case that some keys' synsets are empty
 - For shortcircuit option, what to do w/ keys that contain underscore (input as is, seperate?)
 
-### Funtions missing
-- output meaningful text
-
-### Possible upgrade
+## Future Improvements
 - improve code efficiency
 - updated UI
