@@ -2,7 +2,7 @@
 
 Github Repo for CKIDS DataFest Spring 2021: Turning Cyber Data into Language Project. This web app annotates through JSON formatted cyber threat material via Wordnet, FrameNet and supported using Streamlit. 
 </br>
-Presentation: [Final Presentation](https://docs.google.com/presentation/d/1mhpxF4cnY0QpxWW-K0TgMlsAKG_97fRDCA9gQ81c2Ho/edit?usp=sharing)
+[Final Project Presentation](https://docs.google.com/presentation/d/1mhpxF4cnY0QpxWW-K0TgMlsAKG_97fRDCA9gQ81c2Ho/edit?usp=sharing)
 
 
 #### Students Participants: 
