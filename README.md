@@ -35,6 +35,7 @@ This first run will take a few minutes to download all the required peices. For 
 - The output shown by streamlit is kind messy (improve UI)
 - Need to handle case that some keys' synsets are empty
 - For shortcircuit option, what to do w/ keys that contain underscore (input as is, seperate?)
+- Error warning appears when run our code, but everything is good after loading file.
 
 ## Future Improvements
 - improve code efficiency
