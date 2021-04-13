@@ -23,7 +23,6 @@ def recover_jsonpaths(doc, json_path='$', ret = []):
     return ret
 
 # Cache this result, although we probably don't need to
-@st.cache
 def open_file(filename):
     doc = json.load(filename)
     return doc
@@ -79,7 +78,7 @@ try:
                 lu_list.append(input_str)
             if len(lu_list) == 0:
                 st.write("No Lexical Units for the selected key")
-                st.write("JSON PATH: ",jpath[q][0])
+                st.write("JSON PATH: ",jpath[q-1][0])
             else:
                 st.write("LUs: ")
                 st.write(lu_list)
@@ -105,7 +104,7 @@ try:
                     st.write("Annotator Summary:")
                     st.write("File Annotated:" , filename)
                     st.write("Selected Key:", key_list[q])
-                    st.write("JSON PATH: ",jpath[q][0])
+                    st.write("JSON PATH: ",jpath[q-1][0])
                     st.write("Selected LU:", lu_name)
                     st.write("LU's Frame:", associatedFrame,"(", lu_frame.URL , ")")
 
@@ -128,7 +127,7 @@ try:
             lu_choice_number = st.multiselect("For which hypernyms would you like to see its lexical unit?",list(range(len(hyp_list))),key=i)
             if len(hyp_list) == 0:
                 st.write("No hypernym for this key.")
-                st.write("JSON PATH: ",jpath[i][0])
+                st.write("JSON PATH: ",jpath[i-1][0])
             else:
                 for q in lu_choice_number:
                     st.write("You selected hypernyms: ",q,".",hyp_list[q])
@@ -169,7 +168,7 @@ try:
                             st.write("Annotator Summary:")
                             st.write("File Annotated:" , filename)
                             st.write("Selected Key:", key_list[i])
-                            st.write("JSON PATH: ",jpath[i][0])
+                            st.write("JSON PATH: ",jpath[i-1][0])
                             st.write("Selected Hypernym:", hyp_list[q])
                             st.write("Selected LU:", lu_name)
                             st.write("LU's Frame:", associatedFrame,"(", lu_frame.URL , ")")
