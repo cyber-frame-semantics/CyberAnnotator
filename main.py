@@ -142,7 +142,7 @@ try:
                         lu_list.append(input_str)
                     if len(lu_list) == 0:
                         st.write("No Lexical Units for the selected hypernym")
-                        st.write("JSON PATH: ",jpath[i][0])
+                        st.write("JSON PATH: ",jpath[i-1][0])
                     else:
                         st.write("LUs: ")
                         st.write(lu_list)
