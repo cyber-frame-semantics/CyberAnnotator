@@ -2,8 +2,6 @@
 
 Github Repo for CKIDS DataFest Spring 2021: Turning Cyber Data into Language Project. This web app annotates through JSON formatted cyber threat material via Wordnet, FrameNet and supported using Streamlit. 
 </br>
-[Final Project Presentation](https://docs.google.com/presentation/d/1mhpxF4cnY0QpxWW-K0TgMlsAKG_97fRDCA9gQ81c2Ho/edit?usp=sharing)
-
 
 #### Students Participants: 
 Chuqi Liu, MS, 1st year
@@ -24,19 +22,19 @@ For first time running WordNet and FrameNet, please uncomment the following line
 import nltk
 nltk.download("all")
 ```
+
+Run the streamlit program with the following command:
+```python
+streamlit run main.py
+```
 This first run will take a few minutes to download all the required peices. For future runs comment out the above mentioned lines and re-run the app. 
 
-## Demo
-
-
 ## TODO
-- output meaningful text
-- cannot find all keys in some JSON file
-- The output shown by streamlit is kind messy (improve UI)
+- JSON Path Indexing Issue
+- Cannot find all keys in some JSON file
 - Need to handle case that some keys' synsets are empty
-- For shortcircuit option, what to do w/ keys that contain underscore (input as is, seperate?)
-- Error warning appears when run our code, but everything is good after loading file.
+- Possible warning when initially run the code, after file is loaded error is gone
 
 ## Future Improvements
-- improve code efficiency
-- updated UI
+- Improve code efficiency
+- Improve UI
